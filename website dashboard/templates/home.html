@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBA</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./static/style.css">
+</head>
+
+<body>
+    <div class="header" id="header">
+        <div class="container">
+            <img src="./static/logo.png" alt="Logo" class="logo">
+            <ul class="nav">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#statistics">Statistics</a></li>
+                <li><a href="#dataset">Dataset</a></li>
+                <li><a href="#prediction">Prediction</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="content-background-1" id="home">
+        <img src="./static/background_1.png" alt="background_1">
+        <div class="container">
+            <div class="text-header-1">NBA<br />EDA AND<br />PREDICTION</div>
+            <div class="text-description-1">Exploratory data analysis on<br />NBA Statistics and salary <br />on <strong>prediction using decision tree.</strong></div>
+            <a href="#statistics" class="btn btn-purple">Get Started</a>
+        </div>
+    </div>
+    <div class="content-background-2" id="statistics">
+        <img src="./static/background_2.png" alt="background_2">
+        <div class="container">
+            <div class="text-header-2">Statistics - Click Graph for more info</div>
+            <div class="row bottom-45">
+                <div class="col-average">
+                    <div class="text-header-3">Correlation Matrix</div>
+                    <div class="card-chart chart-1" id="btn-chart-2">
+                        <img src="./static/chart_2.png" alt="chart_1">
+                    </div>
+                </div>
+                <div class="col-graph">
+                    <div class="text-header-3">Average Turnovers Per Game</div>
+                    <div class="card-chart chart-2" id="btn-chart-3">
+                        <img src="./static/chart_1.png" alt="chart_1">
+                    </div>
+                </div>
+            </div>
+            <div class="row bottom-45">
+                <div class="col-average">
+                    <div class="text-header-3">Average Blocks Per Game</div>
+                    <div class="card-chart chart-1" id="btn-chart-4">
+                        <img src="./static/chart_4.png" alt="chart_1">
+                    </div>
+                </div>
+                <div class="col-graph">
+                    <div class="text-header-3">Data Graph</div>
+                    <div class="card-chart chart-2" id="btn-chart-5">
+                        <img src="./static/chart_5.png" alt="chart_1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-background-3" id="dataset">
+        <img src="./static/background_3.png" alt="background_3">
+        <div class="container">
+            <div class="text-header-2">Dataset Season<br />Salary</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>Player</th>
+                        <th>Pos</th>
+                        <th>Age</th>
+                        <th>G</th>
+                        <th>PER</th>
+                        <th>MPG</th>
+                        <th>PPG</th>
+                        <th>APG</th>
+                        <th>RPG</th>
+                        <th>TOPG</th>
+                        <th>BPG</th>
+                        <th>SPG</th>
+                        <th>Salary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index, row in dataset_salary.iterrows() %}
+                    <tr>
+                        <td>{{ row[0]|int }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                        <td>{{ row[4] }}</td>
+                        <td>{{ row[5] }}</td>
+                        <td>{{ "%.5f"|format(row[6]) }}</td>
+                        <td>{{ "%.5f"|format(row[7]) }}</td>
+                        <td>{{ "%.5f"|format(row[8]) }}</td>
+                        <td>{{ "%.5f"|format(row[9]) }}</td>
+                        <td>{{ "%.5f"|format(row[10]) }}</td>
+                        <td>{{ "%.5f"|format(row[11]) }}</td>
+                        <td>{{ "%.5f"|format(row[12]) }}</td>
+                        <td>{{ "%.5f"|format(row[13]) }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="seperator-1"></div>
+            <div class="row">
+                <div class="col text-description-2">
+                    TOPG : Average Turnovers Per Game<br />
+                    BPG : Average Block Per Game<br />
+                    SPG : Average Steals Per Game<br />
+                    PER : Player Efficiency Rating
+                </div>
+                <div class="col text-description-2">
+                    G : Games Played<br />
+                    AGE : Age<br />
+                    Salary: 2017 - 2018 Salary (million usd)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content-background-4" id="prediction">
+        <img src="./static/background_4.png" alt="background_4">
+        <div class="container">
+            <div class="text-header-2">Salary Prediction</div>
+            <form action="" class="form" method="post">
+                <div class="row">
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="pos">POS</label>
+                            <select name="pos" id="pos" class="form-control">
+                                <option value="C">C</option>
+                                <option value="PF">PF</option>
+                                <option value="PG">PG</option>
+                                <option value="SF">SF</option>
+                                <option value="SG">SG</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="age">AGE</label>
+                            <input required type="text" name="age" id="age" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="g">G</label>
+                            <input required type="text" name="g" id="g" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="per">PER</label>
+                            <input required type="text" name="per" id="per" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="mpg">MPG</label>
+                            <input required type="text" name="mpg" id="mpg" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="ppg">PPG</label>
+                            <input required type="text" name="ppg" id="ppg" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="apg">APG</label>
+                            <input required type="text" name="apg" id="apg" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="rpg">RPG</label>
+                            <input required type="text" name="rpg" id="rpg" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="topg">TOPG</label>
+                            <input required type="text" name="topg" id="topg" class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="form-group">
+                            <label for="bpg">BPG</label>
+                            <input required type="text" name="bpg" id="bpg" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="spg">SPG</label>
+                    <input required type="text" name="spg" id="spg" class="form-control">
+                </div>
+                <button class="btn-salary">Submit</button>
+                <div class="text-header-4">Salary Prediction</div>
+                <div class="salary-result">${{ "%.5f"|format(salary_prediction[0]) }}</div>
+                <div class="separator-2"></div>
+                <div class="row">
+                    <div class="col text-description-3">
+                        TOPG : Average Turnovers Per Game<br />
+                        BPG : Average Block Per Game<br />
+                        SPG : Average Steals Per Game<br />
+                        PER : Player Efficiency Rating
+                    </div>
+                    <div class="col text-description-3">
+                        G : Games Played<br />
+                        AGE : Age
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="modal-chart-2" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-2">&times;</span>
+            <div class="modal-content-chart">
+                <img src="./static/chart_2.png" alt="Chart" width="50%">
+                <h3>Correlation Matrix</h3>
+                <p>Jadi disini tingkat korelasinya:
+                    PPG > MPG > TOPG > RPG > PER > SPG > APG > BPG > Age
+                    
+                    Point Per Game merupakan statistik yang paling penting di permainan basket (tim yang mencetak point paling banyak adalah tim yang menang) jadi sangat masuk akal untuk menjadi yang tertinggi. 
+                    
+                    Kemudian diikuti oleh Minutes Per Game, dimana pemain yang bermain terbanyak biasanya merupakan pemain yang paling kuat di tim mereka (tidak selalu, tapi secara umum begitu). Ada exception kecil ketika sebuah tim memiliki banyak pemain yang baik di satu posisi, mungkin MPG pemain bisa berkurang walaupun secara logika mereka deserve minutes yang lebih tinggi. Minutes per game/played juga bisa menjadi representasi seberapa percaya pelatih terhadap pemain.
+                    
+                    TOPG (Turnovers per Game) merupakan satu statisti yang memiliki korelasi relatif tinggi dengan salary. Dipandang dengan kasat mata mungkin ini merupakan sesuatu yang aneh karena secara logika turnover merupakan statistik negatif yang semakin tinggi artinya semakin buruk. Tapi setelah ditelusuri lebih lanjut ini masuk akal karena seperti yang saya jelaskan sebelumnya, pemain yang memegang bola paling banyak atau memiliki usage rate tertinggi adalah pemain-pemain yang memiliki turnover rate tertinggi juga. Dan secara logika, pemain yang memegang bola paling banyak biasanya merupakan pemain terbaik di suatu tim (lepas dari posisi point guard atau bukan, khususnya di permainan NBA modern).
+                    
+                    Bahkan jika dilihat di ranking turnover, pemain-pemain yang terbaik di NBA (secara subjektif, karena hal seperti ini pasti ada unsur subjektifnya) dengan pemain-pemain yang memiliki turnover tertinggi sangat mirip. Jadi masuk akal kalau turnover per game memiliki korelasi positif dengan salary.</p>
+            </div>
+        </div>
+    </div>
+    <div id="modal-chart-3" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-3">&times;</span>
+            <div class="modal-content-chart">
+                <img src="./static/chart_3.png" alt="Chart" width="50%">
+                <h3>Average Turnovers Per Game</h3>
+                <p>Turnover rate yang tertinggi dimiliki oleh posisi Point Guard, dan diiiuti oleh Shooting Guard. Di permainan basket klasik, seorang PG bertanggung jawab untuk menjadi primary ball handler dari tim tersebut (karena biasanya mereka yang memiliki skill ball handling dan passing terbaik), seperti yang sudah dikatakan, turnover dan usage rate memiliki korelasi positif. Karena semakin sering pemain memegang bola, semakin besar kemungkinan untuk dia melakukan kesalahan.
+
+                    Tapi dengan evolusi permainan basket, semakin kesini semakin banyak pemain dari posisi SG, SF, PF atau bahkan C yang juga ikut menjadi ball handler. Ini bisa diihat di pemain-pemain seperti LeBron James, DeMarcus Cousins (yang pada 2017 kadang-kadang membawa bola menjadi play starter), atau bahkan pemain-pemain lainnya yang mungkin tidak sebagus dua contoh tersebut. Ini menyebabkan tingkat turnover dari posisi' lain juga semakin mendekati PG. Tapi kebanyakan tim masih menjadikan PG mereka sebagai primary ball handler, jadi selama itu masih terjadi, PG pasti akan memiliki turnover rate yang tinggi, atau paling tinggi.</p>
+            </div>
+        </div>
+    </div>
+    <div id="modal-chart-4" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-4">&times;</span>
+            <div class="modal-content-chart">
+                <img src="./static/chart_4.png" alt="Chart" width="50%">
+                <h3>Average Blocks Per Game</h3>
+                <p>Block merupakan statistik positif yang dicetak ketika seorang pemain melakukan tepisan secara legal (tidak foul) untuk me-reject sebuah shot attempt dari pemain musuh.
+
+                    Di permainan basket biasanya (ada beberapa exception seperti Ben Simmons dan Magic Johnson yang merupakan PG tapi sangat tinggi) urutan dari pemain terpendek ke tertinggi adalah PG->SG->SF->PF->C. Secara logis, seorang pemain yang lebih tinggi memiliki kemungkinan yang lebih besar untuk melakukan block terhadap musuh, jadi disini ditunjukan bahwa Center memiliki block per game tertinggi, diikuti oleh PF, SF, SG, lalu PG, sesuai dengan asumsi tinggi pemain.</p>
+            </div>
+        </div>
+    </div>
+    <div id="modal-chart-5" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-5">&times;</span>
+            <div class="modal-content-chart">
+                <img src="./static/chart_5.png" alt="Chart" width="50%">
+                <h3>Salary Distribution</h3>
+                <p>Kebanyakan salary pemain berada di kisaran 0.8-5 juta USD. Ini bisa dijelaskan oleh adanya minimum salary dan rookie-scale contract di NBA. Kebanyakan pemain memiliki kontrak dengan salary minimum, atau dengan rookie-scale salary.
+
+                    Minimum salary ditentukan oleh years of experience di NBA, minimal 800k USD sampai sekitar 2jt untuk pemain veteran dengan 10+ tahun experience. Untuk rookie (pemain tahun pertama, yang masuk lewat NBA Draft), ditentukan oleh posisi draftnya.
+                    
+                    <div align = center><img src="https://i.imgur.com/zWnQ57G.png" width = 35% height = 35%></div>
+                    <div align = center>Breakdown minimum salary pada tahun 2017</div>
+                    
+                    <div align = center><img src="https://cdn.hoopsrumors.com/files/2017/05/100-percent.jpg" width = 35% height = 35%></div>
+                    <div align = center>Breakdown minimum salary pada tahun 2017-2020</div>
+                    
+                    </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        const header = document.getElementById('header');
+        const sticky = header.offsetTop;
+        window.onscroll = () => {
+            if (window.pageYOffset > sticky) {
+                header.classList.add('fixed');
+            } else {
+                header.classList.remove('fixed');
+            }
+        }
+
+        // Get the modal
+        var modal2 = document.getElementById("modal-chart-2");
+        var btn2 = document.getElementById("btn-chart-2");
+        var span2 = document.getElementById("close-2");
+        btn2.onclick = function () {
+            modal2.style.display = "block";
+        }
+        span2.onclick = function () {
+            modal2.style.display = "none";
+        }
+
+        var modal3 = document.getElementById("modal-chart-3");
+        var btn3 = document.getElementById("btn-chart-3");
+        var span3 = document.getElementById("close-3");
+        btn3.onclick = function () {
+            modal3.style.display = "block";
+        }
+        span3.onclick = function () {
+            modal3.style.display = "none";
+        }
+
+        var modal4 = document.getElementById("modal-chart-4");
+        var btn4 = document.getElementById("btn-chart-4");
+        var span4 = document.getElementById("close-4");
+        btn4.onclick = function () {
+            modal4.style.display = "block";
+        }
+        span4.onclick = function () {
+            modal4.style.display = "none";
+        }
+
+        var modal5 = document.getElementById("modal-chart-5");
+        var btn5 = document.getElementById("btn-chart-5");
+        var span5 = document.getElementById("close-5");
+        btn5.onclick = function () {
+            modal5.style.display = "block";
+        }
+        span5.onclick = function () {
+            modal5.style.display = "none";
+        }
+    </script>
+</body>
+
+</html>
